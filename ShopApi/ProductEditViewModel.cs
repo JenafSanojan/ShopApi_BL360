@@ -28,6 +28,8 @@ namespace ShopApi
         // Nullable byte array or string for the image
         public byte[]? Image { get; set; }
 
+        public string? ImageUrl { get; set; }
+
         [NotMapped]
         public IFormFile? ImageFile { get; set; }
     }

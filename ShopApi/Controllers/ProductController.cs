@@ -94,6 +94,7 @@ namespace ShopApi.Controllers
                     Description = viewModel.Description,
                     Price = viewModel.Price,
                     Image = imageData,
+                    ImageUrl = viewModel.ImageUrl,
                 };
 
                 await _context.ProductsForApi.AddAsync(product);
@@ -183,8 +184,7 @@ namespace ShopApi.Controllers
                     product.Quantity = viewModel.Quantity != 0 ? viewModel.Quantity : product.Quantity;
                     product.Price = viewModel.Price != 0 ? viewModel.Price : product.Price;
                     product.Name = viewModel.Name is not null ? viewModel.Name : product.Name;
-
-// *****                    // image
+                    product.ImageUrl = viewModel.ImageUrl is not null ? viewModel.ImageUrl : product.ImageUrl;
 
                     await dbContext.SaveChangesAsync();
 
@@ -236,8 +236,7 @@ namespace ShopApi.Controllers
                 product.Quantity = viewModel.Quantity != 0 ? viewModel.Quantity : product.Quantity;
                 product.Price = viewModel.Price != 0 ? viewModel.Price : product.Price;
                 product.Name = viewModel.Name is not null ? viewModel.Name : product.Name;
-
-// *****                    // image
+                product.ImageUrl = viewModel.ImageUrl is not null ? viewModel.ImageUrl : product.ImageUrl;
 
                 await dbContext.SaveChangesAsync();
 

@@ -29,7 +29,7 @@ namespace ShopApi.Controllers
 
 
         // GET: Product/GetOne/:id
-        [HttpGet("GetOne")]
+        [HttpGet("GetOne/{id}")]
         public async Task<IActionResult> GetOne(int? id)
         {
             if (id == null)
@@ -39,6 +39,26 @@ namespace ShopApi.Controllers
 
             var product = await _context.ProductsForApi
                 .FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
+
+
+        // GET: Product/GetOneUsingProductId/:id
+        [HttpGet("GetOneUsingProductId/{id}")]
+        public async Task<IActionResult> GetOneUsingProductId(long? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.ProductsForApi
+                .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
                 return NotFound();

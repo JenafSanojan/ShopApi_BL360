@@ -10,6 +10,7 @@ namespace ShopApi.Controllers
     {
         private readonly ApplicationDbContext _context = dbContext;
 
+
         // GET, POST, PUT, DELETE
         [HttpGet]
         public IActionResult Index()
@@ -25,6 +26,7 @@ namespace ShopApi.Controllers
         {
             return Ok(await _context.ProductsForApi.ToListAsync());
         }
+
 
         // GET: Product/GetOne/:id
         [HttpGet("GetOne")]
@@ -45,12 +47,14 @@ namespace ShopApi.Controllers
             return Ok(product);
         }
 
+
         // GET: ProductsApi/Ui   does not send an api but a html file
         [HttpGet("Ui")]
         public IActionResult Ui()
         {
             return View();
         }
+
 
         // POST: Product/AddNewProduct + <- Product
         [HttpPost("AddNewProduct")]
@@ -111,6 +115,7 @@ namespace ShopApi.Controllers
             }
         }
 
+
         // DELETE: Product/DeleteOne/:id
         [HttpDelete("DeleteOne/{id}")]
         public async Task<IActionResult> DeleteOne(int? id)
@@ -146,6 +151,7 @@ namespace ShopApi.Controllers
                 return StatusCode(500, "Internal Error: \n" + exceptionSummary.ToString());
             }
         }
+
 
         // PUT: Product/EditOneByDatabaseId/:id + <- product
         [HttpPut("EditOneByDatabaseId/{id}")]
@@ -203,6 +209,7 @@ namespace ShopApi.Controllers
             }
         }
 
+
         // PUT: Product/EditOneByProductId/:id + <- product
         [HttpPut("EditOneByProductId/{productId}")]
         public async Task<IActionResult> EditOneByProductId(int? productId, [FromBody] ProductEditViewModel viewModel)
@@ -248,6 +255,7 @@ namespace ShopApi.Controllers
                 return StatusCode(500, "Internal Error: \n" + exceptionSummary.ToString());
             }
         }
+
 
         private bool ProductExists(long id)
         {
